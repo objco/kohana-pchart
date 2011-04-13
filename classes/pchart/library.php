@@ -9,17 +9,17 @@ class pChart_library {
 	
 	static public function barcode128()
 	{
-		return new pBarcode128();
+		return new pBarcode128(Kohana::config('pchart.data_directory', ''));
 	}
 	
-	static public function barcode39()
+	static public function barcode39($EnableMOD43 = FALSE)
 	{
-		return new pBarcode39();
+		return new pBarcode39(Kohana::config('pchart.data_directory', ''), $EnableMOD43);
 	}
 	
 	static public function cache()
 	{
-		return new pCache();
+		return new pCache(Kohana::config('pchart.cache_settings'));
 	}
 	
 	static public function data()
@@ -32,14 +32,19 @@ class pChart_library {
 		return new pDraw();
 	}
 	
-	static public function image()
+	static public function image($XSize, $YSize, $DataSet = NULL, $TransparentBackground = FALSE)
 	{
-		return new pImage();
+		return new pImage($XSize, $YSize, $DataSet, $TransparentBackground);
 	}
 	
-	static public function pie()
+	static public function indicator($pChartObject)
 	{
-		return new pPie();
+		return new pIndicator($pChartObject);
+	}
+	
+	static public function pie($Object, $pDataObject)
+	{
+		return new pPie($Object, $pDataObject);
 	}
 	
 	static public function radar()
@@ -47,9 +52,9 @@ class pChart_library {
 		return new pRadar();
 	}
 	
-	static public function scatter()
+	static public function scatter($pChartObject, $pDataObject)
 	{
-		return new pScatter();
+		return new pScatter($pChartObject, $pDataObject);
 	}
 	
 	static public function split()
@@ -62,14 +67,14 @@ class pChart_library {
 		return new pSpring();
 	}
 	
-	static public function stock()
+	static public function stock($pChartObject, $pDataObject)
 	{
-		return new pStock();
+		return new pStock($pChartObject, $pDataObject);
 	}
 	
-	static public function surface()
+	static public function surface($pChartObject)
 	{
-		return new pSurface();
+		return new pSurface($pChartObject);
 	}
 
 } // End pChart
